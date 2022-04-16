@@ -72,8 +72,8 @@ function App() {
   }
 
   const deleteTask = async(id) => {
-
-    const result = await deleteDocument("Tasks", id)
+    if(window.confirm("Estas seguro de eliminar el registro?")){
+      const result = await deleteDocument("Tasks", id)
     if (!result.statusResponse) {
       setError(result.error)
       return
@@ -81,6 +81,7 @@ function App() {
 
     const filteredTasks = tasks.filter(task => task.id !== id)
     setTasks(filteredTasks)
+    }
   }
 
   const editTask = (theTask) => {
